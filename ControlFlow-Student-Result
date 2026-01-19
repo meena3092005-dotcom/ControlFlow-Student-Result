@@ -1,0 +1,43 @@
+import java.util.Scanner;
+
+public class StudentResultSystem {
+
+    static String grade(double p) {
+        if (p >= 90) return "A+";
+        else if (p >= 80) return "A";
+        else if (p >= 70) return "B";
+        else if (p >= 60) return "C";
+        else if (p >= 50) return "D";
+        else return "Fail";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        char ch;
+
+        do {
+            int total = 0;
+            System.out.print("\nName: ");
+            String name = sc.next();
+
+            for (int i = 1; i <= 5; i++) {
+                int m;
+                do {
+                    System.out.print("Mark " + i + ": ");
+                    m = sc.nextInt();
+                } while (m < 0 || m > 100);
+                total += m;
+            }
+
+            double per = total / 5.0;
+            System.out.println("\n" + name + " | Total: " + total +
+                    " | %: " + per + " | Grade: " + grade(per));
+
+            System.out.print("Another student? (Y/N): ");
+            ch = sc.next().charAt(0);
+
+        } while (ch == 'Y' || ch == 'y');
+
+        sc.close();
+    }
+}
